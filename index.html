@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>🎮 英语小达人 - 二年级下册</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Comic Sans MS','Arial Rounded MT Bold',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;overflow-x:hidden}
+.container{max-width:800px;margin:0 auto;padding:10px}
+h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0,.3);padding:15px 0 5px}
+.subtitle{text-align:center;color:#ffe066;font-size:.9em;margin-bottom:10px}
+.stars-bar{display:flex;justify-content:center;align-items:center;gap:10px;background:rgba(255,255,255,.15);border-radius:30px;padding:8px 20px;margin:5px auto 15px;width:fit-content}
+.stars-bar span{font-size:1.3em;color:#ffe066;font-weight:bold}
+.stars-bar .star-icon{font-size:1.6em}
+.module-tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:12px}
+.module-tab{padding:8px 14px;border-radius:20px;border:none;font-size:.85em;font-weight:bold;cursor:pointer;transition:all .3s;color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
+.module-tab.active{transform:scale(1.1);box-shadow:0 4px 15px rgba(0,0,0,.3)}
+.module-tab:nth-child(1){background:#ff6b6b}.module-tab:nth-child(2){background:#feca57}.module-tab:nth-child(3){background:#48dbfb}.module-tab:nth-child(4){background:#ff9ff3}
+.game-selector{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:15px}
+.game-btn{padding:12px 20px;border-radius:16px;border:3px solid rgba(255,255,255,.5);background:rgba(255,255,255,.2);color:#fff;font-size:1.1em;font-weight:bold;cursor:pointer;transition:all .3s;backdrop-filter:blur(5px)}
+.game-btn:hover,.game-btn.active{background:rgba(255,255,255,.4);border-color:#fff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.game-area{background:rgba(255,255,255,.95);border-radius:24px;padding:20px;min-height:400px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+.question-area{text-align:center;margin-bottom:20px}
+.question-text{font-size:1.8em;color:#2d3436;font-weight:bold;margin-bottom:5px}
+.question-hint{font-size:1em;color:#636e72}
+.question-emoji{font-size:3.5em;margin:10px 0}
+.options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;margin:0 auto}
+.option-btn{padding:16px 10px;border-radius:16px;border:3px solid #dfe6e9;background:#fff;font-size:1.3em;font-weight:bold;cursor:pointer;transition:all .3s;color:#2d3436;min-height:60px;display:flex;align-items:center;justify-content:center}
+.option-btn:hover{border-color:#74b9ff;background:#f0f7ff;transform:scale(1.03)}
+.option-btn.correct{background:#00b894!important;color:#fff!important;border-color:#00b894!important;animation:pop .4s ease}
+.option-btn.wrong{background:#ff7675!important;color:#fff!important;border-color:#ff7675!important;animation:shake .4s ease}
+@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:0 auto}
+.memory-card{aspect-ratio:1;border-radius:14px;border:none;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .4s;perspective:600px}
+.memory-card .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s}
+.memory-card.flipped .card-inner{transform:rotateY(180deg)}
+.memory-card .card-front,.memory-card .card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;text-align:center}
+.memory-card .card-front{background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;font-size:2em}
+.memory-card .card-back{background:#fff;border:3px solid #dfe6e9;transform:rotateY(180deg);color:#2d3436}
+.memory-card.matched .card-back{background:#55efc4;border-color:#00b894}
+.memory-card.matched{pointer-events:none}
+.spell-word{display:flex;justify-content:center;gap:8px;margin:15px 0;flex-wrap:wrap}
+.spell-letter{width:48px;height:56px;border-radius:12px;border:3px solid #b2bec3;background:#fff;font-size:1.8em;font-weight:bold;text-align:center;line-height:50px;color:#2d3436;text-transform:lowercase}
+.spell-letter.filled{border-color:#6c5ce7;background:#f0edff;color:#6c5ce7}
+.letter-choices{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:15px}
+.letter-choice{width:48px;height:48px;border-radius:12px;border:2px solid #dfe6e9;background:#fff;font-size:1.5em;font-weight:bold;cursor:pointer;transition:all .2s;color:#2d3436;text-transform:lowercase}
+.letter-choice:hover{border-color:#6c5ce7;background:#f0edff}
+.letter-choice.used{opacity:.3;pointer-events:none}
+.progress-bar{width:100%;height:12px;background:#dfe6e9;border-radius:6px;margin:10px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00b894,#55efc4);border-radius:6px;transition:width .5s}
+.score-text{text-align:center;color:#636e72;font-size:.9em;margin-top:5px}
+.result-screen{text-align:center;padding:30px 0}
+.result-emoji{font-size:4em;margin-bottom:10px}
+.result-title{font-size:1.8em;color:#2d3436;font-weight:bold}
+.result-score{font-size:1.3em;color:#636e72;margin:10px 0}
+.result-stars{font-size:2.5em;margin:10px 0}
+.play-again-btn{margin-top:15px;padding:14px 36px;border-radius:30px;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .3s}
+.play-again-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(108,92,231,.4)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.floating{animation:float 3s ease-in-out infinite}
+.confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
+.confetti{position:absolute;width:10px;height:10px;border-radius:50%;animation:confetti-fall 2s ease-in forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.sound-btn{position:fixed;top:15px;right:15px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.3);font-size:1.4em;cursor:pointer;z-index:100;backdrop-filter:blur(5px)}
+.listen-btn{padding:15px;border-radius:50%;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:2em;cursor:pointer;transition:all .3s;width:80px;height:80px;display:inline-flex;align-items:center;justify-content:center}
+.listen-btn:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(108,92,231,.4)}
+</style>
+</head>
+<body>
+<button class="sound-btn" onclick="toggleSound()" id="soundBtn">🔊</button>
+<div class="container">
+<h1 class="floating">🎮 英语小达人</h1>
+<div class="subtitle">📚 沪教版牛津上海版 · 二年级下册</div>
+<div class="stars-bar"><span class="star-icon">⭐</span><span id="totalStars">0</span></div>
+<div class="module-tabs" id="moduleTabs"></div>
+<div class="game-selector" id="gameSelector">
+<button class="game-btn active" onclick="selectGame('quiz',this)">🎯 选一选</button>
+<button class="game-btn" onclick="selectGame('memory',this)">🃏 翻翻卡</button>
+<button class="game-btn" onclick="selectGame('spell',this)">✏️ 拼一拼</button>
+<button class="game-btn" onclick="selectGame('listen',this)">👂 听一听</button>
+</div>
+<div class="game-area" id="gameArea"><div id="gameContent"></div></div>
+</div>
+<div class="confetti-container" id="confettiContainer"></div>
+<script>
+const modules=[
+{name:"📱 Module 1",color:"#ff6b6b",words:[
+{en:"touch",cn:"触摸",emoji:"🤚"},{en:"feel",cn:"感觉",emoji:"😊"},{en:"hard",cn:"硬的",emoji:"🧱"},
+{en:"soft",cn:"软的",emoji:"🧸"},{en:"smooth",cn:"光滑的",emoji:"🪞"},{en:"rough",cn:"粗糙的",emoji:"🪨"},
+{en:"watch",cn:"手表",emoji:"⌚"},{en:"bag",cn:"包",emoji:"🎒"},{en:"pineapple",cn:"菠萝",emoji:"🍍"},
+{en:"cake",cn:"蛋糕",emoji:"🎂"},{en:"melon",cn:"瓜",emoji:"🍈"},{en:"lemon",cn:"柠檬",emoji:"🍋"},
+{en:"peach",cn:"桃子",emoji:"🍑"},{en:"cherry",cn:"樱桃",emoji:"🍒"},{en:"strawberry",cn:"草莓",emoji:"🍓"},
+{en:"grape",cn:"葡萄",emoji:"🍇"}]},
+{name:"🏠 Module 2",color:"#feca57",words:[
+{en:"run",cn:"跑",emoji:"🏃"},{en:"write",cn:"写",emoji:"✍️"},{en:"swim",cn:"游泳",emoji:"🏊"},
+{en:"fly",cn:"飞",emoji:"🦅"},{en:"hop",cn:"跳",emoji:"🐇"},{en:"cook",cn:"做饭",emoji:"👨‍🍳"},
+{en:"can",cn:"能",emoji:"💪"},{en:"skip",cn:"跳绳",emoji:"🤸"},{en:"ride",cn:"骑",emoji:"🚴"},
+{en:"football",cn:"足球",emoji:"⚽"},{en:"rope",cn:"绳子",emoji:"🪢"},{en:"bicycle",cn:"自行车",emoji:"🚲"},
+{en:"salad",cn:"沙拉",emoji:"🥗"},{en:"carrot",cn:"胡萝卜",emoji:"🥕"},{en:"fish",cn:"鱼",emoji:"🐟"},
+{en:"chicken",cn:"鸡肉",emoji:"🍗"}]},
+{name:"🌈 Module 3",color:"#48dbfb",words:[
+{en:"spring",cn:"春天",emoji:"🌸"},{en:"summer",cn:"夏天",emoji:"☀️"},{en:"autumn",cn:"秋天",emoji:"🍂"},
+{en:"winter",cn:"冬天",emoji:"❄️"},{en:"warm",cn:"温暖的",emoji:"🌤️"},{en:"hot",cn:"热的",emoji:"🥵"},
+{en:"cool",cn:"凉爽的",emoji:"🍃"},{en:"cold",cn:"冷的",emoji:"🥶"},{en:"sunny",cn:"晴朗的",emoji:"🌞"},
+{en:"rainy",cn:"下雨的",emoji:"🌧️"},{en:"windy",cn:"有风的",emoji:"💨"},{en:"cloudy",cn:"多云的",emoji:"⛅"},
+{en:"shirt",cn:"衬衫",emoji:"👔"},{en:"dress",cn:"裙子",emoji:"👗"},{en:"coat",cn:"外套",emoji:"🧥"},
+{en:"shorts",cn:"短裤",emoji:"🩳"}]},
+{name:"🔔 Module 4",color:"#ff9ff3",words:[
+{en:"letter",cn:"信",emoji:"✉️"},{en:"homework",cn:"作业",emoji:"📝"},{en:"pencil",cn:"铅笔",emoji:"✏️"},
+{en:"ruler",cn:"尺子",emoji:"📏"},{en:"book",cn:"书",emoji:"📖"},{en:"rubber",cn:"橡皮",emoji:"🟫"},
+{en:"train",cn:"火车",emoji:"🚂"},{en:"bus",cn:"公交车",emoji:"🚌"},{en:"ship",cn:"船",emoji:"🚢"},
+{en:"plane",cn:"飞机",emoji:"✈️"},{en:"underground",cn:"地铁",emoji:"🚇"},{en:"walk",cn:"走路",emoji:"🚶"},
+{en:"go",cn:"去",emoji:"👉"},{en:"by",cn:"乘",emoji:"🎫"},{en:"children",cn:"孩子们",emoji:"👦"},
+{en:"play",cn:"玩",emoji:"🎮"}]}
+];
+
+let currentModule=0,currentGame='quiz',totalStars=parseInt(localStorage.getItem('totalStars')||'0'),soundEnabled=true,audioCtx;
+
+function getAudioCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx}
+function playNote(f,d=.15,t='sine'){if(!soundEnabled)return;try{const c=getAudioCtx(),o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.3,c.currentTime);g.gain.exponentialRampToValueAtTime(.01,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}catch(e){}}
+function playCorrect(){playNote(523,.1);setTimeout(()=>playNote(659,.1),100);setTimeout(()=>playNote(784,.2),200)}
+function playWrong(){playNote(200,.2,'sawtooth')}
+function playClick(){playNote(440,.05)}
+function playWin(){[523,587,659,698,784,880,988,1047].forEach((f,i)=>setTimeout(()=>playNote(f,.15),i*100))}
+function speak(t){if(!soundEnabled)return;try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;u.pitch=1.1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function toggleSound(){soundEnabled=!soundEnabled;document.getElementById('soundBtn').textContent=soundEnabled?'🔊':'🔇'}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function addStars(n){totalStars+=n;localStorage.setItem('totalStars',totalStars);document.getElementById('totalStars').textContent=totalStars}
+function showConfetti(){const c=document.getElementById('confettiContainer');const colors=['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#55efc4','#a29bfe'];for(let i=0;i<40;i++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'%';d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*1+'s';d.style.animationDuration=(1.5+Math.random())+'s';c.appendChild(d)}setTimeout(()=>c.innerHTML='',3000)}
+
+function init(){document.getElementById('totalStars').textContent=totalStars;renderModuleTabs();startGame()}
+function renderModuleTabs(){document.getElementById('moduleTabs').innerHTML=modules.map((m,i)=>'<button class="module-tab'+(i===currentModule?' active':'')+'" onclick="selectModule('+i+')">'+m.name+'</button>').join('')}
+function selectModule(i){currentModule=i;renderModuleTabs();startGame()}
+function selectGame(t,btn){currentGame=t;document.querySelectorAll('.game-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');startGame()}
+function startGame(){playClick();switch(currentGame){case'quiz':startQuiz();break;case'memory':startMemory();break;case'spell':startSpell();break;case'listen':startListen();break}}
+
+// ===== QUIZ =====
+let quizQ=[],quizI=0,quizS=0,quizA=false;
+function startQuiz(){const w=[...modules[currentModule].words];shuffle(w);quizQ=w.slice(0,8);quizI=0;quizS=0;renderQuiz()}
+function renderQuiz(){
+if(quizI>=quizQ.length){showResult(quizS,quizQ.length);return}
+quizA=false;const q=quizQ[quizI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
+const opts=[q,wrong[0],wrong[1],wrong[2]];shuffle(opts);
+const p=(quizI/quizQ.length*100);
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(quizI+1)+' / '+quizQ.length+' 题</div><div class="question-area"><div class="question-emoji">'+q.emoji+'</div><div class="question-text">"'+q.cn+'" 的英文是？</div></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkQuiz(this,\''+o.en+'\',\''+q.en+'\')">'+o.en+'</button>').join('')+'</div>';
+}
+function checkQuiz(btn,sel,cor){
+if(quizA)return;quizA=true;
+document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===cor)b.classList.add('correct')});
+if(sel===cor){btn.classList.add('correct');quizS++;playCorrect();speak(cor)}
+else{btn.classList.add('wrong');playWrong()}
+setTimeout(()=>{quizI++;renderQuiz()},1000);
+}
+
+// ===== MEMORY =====
+let memCards=[],memFlipped=[],memMatched=0,memLocked=false;
+function startMemory(){
+const w=[...modules[currentModule].words];shuffle(w);
+const pick=w.slice(0,6);
+memCards=[];pick.forEach((w,i)=>{memCards.push({id:i*2,text:w.emoji+' '+w.cn,type:'cn',pair:i});memCards.push({id:i*2+1,text:w.en,type:'en',pair:i})});
+shuffle(memCards);memFlipped=[];memMatched=0;memLocked=false;
+const gc=document.getElementById('gameContent');
+gc.innerHTML='<div class="progress-bar"><div class="progress-fill" id="memProgress" style="width:0%"></div></div><div class="score-text">找到所有配对！</div><div class="memory-grid" id="memGrid"></div>';
+const grid=document.getElementById('memGrid');
+memCards.forEach((c,i)=>{const el=document.createElement('button');el.className='memory-card';el.id='mc'+i;el.innerHTML='<div class="card-inner"><div class="card-front">❓</div><div class="card-back">'+c.text+'</div></div>';el.onclick=()=>flipCard(i);grid.appendChild(el)});
+}
+function flipCard(i){
+if(memLocked)return;const el=document.getElementById('mc'+i);
+if(el.classList.contains('flipped')||el.classList.contains('matched'))return;
+el.classList.add('flipped');memFlipped.push(i);
+if(memFlipped.length===2){
+memLocked=true;const a=memCards[memFlipped[0]],b=memCards[memFlipped[1]];
+if(a.pair===b.pair&&a.type!==b.type){
+document.getElementById('mc'+memFlipped[0]).classList.add('matched');
+document.getElementById('mc'+memFlipped[1]).classList.add('matched');
+memMatched++;playCorrect();speak(a.type==='en'?a.text:b.text);
+document.getElementById('memProgress').style.width=(memMatched/6*100)+'%';
+memFlipped=[];memLocked=false;
+if(memMatched===6){setTimeout(()=>{addStars(3);showConfetti();playWin();showResult(6,6,true)},500)}
+}else{
+setTimeout(()=>{document.getElementById('mc'+memFlipped[0]).classList.remove('flipped');document.getElementById('mc'+memFlipped[1]).classList.remove('flipped');memFlipped=[];memLocked=false},800)}
+}
+}
+
+// ===== SPELL =====
+let spellWords=[],spellI=0,spellS=0,spellLetters=[];
+function startSpell(){const w=[...modules[currentModule].words].filter(w=>w.en.length<=7);shuffle(w);spellWords=w.slice(0,6);spellI=0;spellS=0;renderSpell()}
+function renderSpell(){
+if(spellI>=spellWords.length){showResult(spellS,spellWords.length);return}
+const w=spellWords[spellI];spellLetters=[];const blanks=w.en.split('').map(()=>'_').join('');
+const extra='abcdefghijklmnopqrstuvwxyz'.split('').filter(c=>!w.en.includes(c));
+shuffle(extra);const pool=w.en.split('').concat(extra.slice(0,Math.max(0,8-w.en.length)));shuffle(pool);
+const p=(spellI/spellWords.length*100);
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(spellI+1)+' / '+spellWords.length+' 题</div><div class="question-area"><div class="question-emoji">'+w.emoji+'</div><div class="question-text">'+w.cn+'</div><div class="question-hint">请拼出这个单词</div></div><div class="spell-word" id="spellWord">'+w.en.split('').map(()=>'<div class="spell-letter">_</div>').join('')+'</div><div class="letter-choices" id="letterChoices">'+pool.map((c,i)=>'<button class="letter-choice" onclick="pickLetter(this,\''+c+'\','+i+',\''+w.en+'\')">'+c+'</button>').join('')+'</div>';
+}
+function pickLetter(btn,letter,idx,answer){
+playClick();spellLetters.push({letter,idx});
+const slots=document.querySelectorAll('.spell-letter');
+const pos=spellLetters.length-1;
+if(pos<slots.length){slots[pos].textContent=letter;slots[pos].classList.add('filled')}
+btn.classList.add('used');
+if(spellLetters.length===answer.length){
+const typed=spellLetters.map(l=>l.letter).join('');
+if(typed===answer){spellS++;playCorrect();speak(answer);document.querySelectorAll('.spell-letter').forEach(s=>{s.classList.add('correct-letter')})}
+else{playWrong();document.querySelectorAll('.spell-letter').forEach(s=>{s.classList.add('wrong-letter')})}
+setTimeout(()=>{spellI++;spellLetters=[];renderSpell()},1000);
+}
+}
+
+// ===== LISTEN =====
+let listenQ=[],listenI=0,listenS=0,listenA=false;
+function startListen(){const w=[...modules[currentModule].words];shuffle(w);listenQ=w.slice(0,8);listenI=0;listenS=0;renderListen()}
+function renderListen(){
+if(listenI>=listenQ.length){showResult(listenS,listenQ.length);return}
+listenA=false;const q=listenQ[listenI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
+const opts=[q,wrong[0],wrong[1],wrong[2]];shuffle(opts);
+const p=(listenI/listenQ.length*100);
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(listenI+1)+' / '+listenQ.length+' 题</div><div class="question-area"><div class="question-text">听一听，选一选 👂</div><button class="listen-btn" onclick="speak(\''+q.en+'\')">🔊</button></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkListen(this,\''+o.en+'\',\''+q.en+'\')">'+o.emoji+'<br>'+o.cn+'</button>').join('')+'</div>';
+setTimeout(()=>speak(q.en),300);
+}
+function checkListen(btn,sel,cor){
+if(listenA)return;listenA=true;
+document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent.includes(cor)||b.innerHTML.includes(cor))b.classList.add('correct')});
+if(sel===cor){btn.classList.add('correct');listenS++;playCorrect()}
+else{btn.classList.add('wrong');playWrong();speak(cor)}
+setTimeout(()=>{listenI++;renderListen()},1200);
+}
+
+// ===== RESULT =====
+function showResult(score,total,isMemory){
+const pct=score/total;let emoji,title,starCount;
+if(pct>=1){emoji='🏆';title='太棒了！满分！';starCount=5}
+else if(pct>=.8){emoji='🎉';title='非常厉害！';starCount=4}
+else if(pct>=.6){emoji='👍';title='做得不错！';starCount=3}
+else if(pct>=.4){emoji='💪';title='继续加油！';starCount=2}
+else{emoji='📖';title='再练练吧！';starCount=1}
+addStars(starCount);
+if(starCount>=4)showConfetti();
+if(starCount>=4)playWin();
+const stars='⭐'.repeat(starCount)+'☆'.repeat(5-starCount);
+document.getElementById('gameContent').innerHTML='<div class="result-screen"><div class="result-emoji">'+emoji+'</div><div class="result-title">'+title+'</div><div class="result-score">答对 '+score+' / '+total+'</div><div class="result-stars">'+stars+'</div><button class="play-again-btn" onclick="startGame()">🔄 再玩一次</button></div>';
+}
+
+init();
+</script>
+</body>
+</html>
