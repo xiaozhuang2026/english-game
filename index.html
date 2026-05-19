@@ -21,11 +21,11 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 .game-btn:hover,.game-btn.active{background:rgba(255,255,255,.4);border-color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
 .game-area{background:rgba(255,255,255,.95);border-radius:22px;padding:18px;min-height:380px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
 .question-area{text-align:center;margin-bottom:15px}
-.question-text{font-size:1.6em;color:#2d3436;font-weight:bold;margin-bottom:5px}
-.question-hint{font-size:.9em;color:#636e72}
-.question-emoji{font-size:3em;margin:8px 0}
+.question-text{font-size:1.5em;color:#2d3436;font-weight:bold;margin-bottom:5px}
+.question-hint{font-size:.85em;color:#636e72}
+.question-emoji{font-size:2.5em;margin:8px 0}
 .options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:480px;margin:0 auto}
-.option-btn{padding:14px 8px;border-radius:14px;border:3px solid #dfe6e9;background:#fff;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .3s;color:#2d3436;min-height:55px;display:flex;align-items:center;justify-content:center;text-align:center}
+.option-btn{padding:14px 8px;border-radius:14px;border:3px solid #dfe6e9;background:#fff;font-size:1.15em;font-weight:bold;cursor:pointer;transition:all .3s;color:#2d3436;min-height:55px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
 .option-btn:hover{border-color:#74b9ff;background:#f0f7ff;transform:scale(1.03)}
 .option-btn.correct{background:#00b894!important;color:#fff!important;border-color:#00b894!important;animation:pop .4s ease}
 .option-btn.wrong{background:#ff7675!important;color:#fff!important;border-color:#ff7675!important;animation:shake .4s ease}
@@ -35,7 +35,7 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 .memory-card{aspect-ratio:1;border-radius:12px;border:none;font-weight:bold;cursor:pointer;transition:all .4s;perspective:600px}
 .memory-card .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s}
 .memory-card.flipped .card-inner{transform:rotateY(180deg)}
-.memory-card .card-front,.memory-card .card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;text-align:center;font-size:1em}
+.memory-card .card-front,.memory-card .card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;text-align:center;font-size:.9em}
 .memory-card .card-front{background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;font-size:1.8em}
 .memory-card .card-back{background:#fff;border:3px solid #dfe6e9;transform:rotateY(180deg);color:#2d3436}
 .memory-card.matched .card-back{background:#55efc4;border-color:#00b894}
@@ -50,6 +50,9 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 .progress-bar{width:100%;height:10px;background:#dfe6e9;border-radius:5px;margin:8px 0;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,#00b894,#55efc4);border-radius:5px;transition:width .5s}
 .score-text{text-align:center;color:#636e72;font-size:.85em;margin-top:4px}
+.timer-bar{width:100%;height:8px;background:#dfe6e9;border-radius:4px;margin:6px 0;overflow:hidden}
+.timer-fill{height:100%;background:linear-gradient(90deg,#ff6b6b,#feca57,#00b894);border-radius:4px;transition:width .1s linear}
+.timer-fill.danger{background:#ff6b6b!important}
 .result-screen{text-align:center;padding:25px 0}
 .result-emoji{font-size:3.5em;margin-bottom:8px}
 .result-title{font-size:1.6em;color:#2d3436;font-weight:bold}
@@ -65,9 +68,7 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 .sound-btn{position:fixed;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.3);font-size:1.3em;cursor:pointer;z-index:100;backdrop-filter:blur(5px)}
 .listen-btn{padding:12px;border-radius:50%;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:1.8em;cursor:pointer;transition:all .3s;width:70px;height:70px;display:inline-flex;align-items:center;justify-content:center}
 .listen-btn:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(108,92,231,.4)}
-.cat-btn{padding:6px 14px;border-radius:15px;border:2px solid #dfe6e9;background:#fff;color:#636e72;font-size:.85em;cursor:pointer;transition:all .2s;margin:2px}
-.cat-btn.active{background:#6c5ce7;color:#fff;border-color:#6c5ce7}
-.cat-btn:hover{border-color:#6c5ce7}
+.mixed-label{background:#e17055;color:#fff}
 </style>
 </head>
 <body>
@@ -88,7 +89,7 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 <div class="confetti-container" id="confettiContainer"></div>
 <script>
 const modules=[
-{name:"🏖️ U1 Holidays",color:"#ff6b6b",words:[
+{name:"🏖️ U1",color:"#ff6b6b",words:[
 {en:"feed the cows",cn:"喂奶牛",emoji:"🐄"},
 {en:"see a film",cn:"看电影",emoji:"🎬"},
 {en:"visit Grandma and Grandpa",cn:"看望爷爷奶奶",emoji:"👴👵"},
@@ -98,7 +99,7 @@ const modules=[
 {en:"skate",cn:"滑冰",emoji:"⛸️"},
 {en:"fresh air",cn:"新鲜空气",emoji:"🌬️"}
 ]},
-{name:"🧹 U2 Housework",color:"#feca57",words:[
+{name:"🧹 U2",color:"#feca57",words:[
 {en:"do the housework",cn:"做家务",emoji:"🧹"},
 {en:"tidy my room",cn:"整理我的房间",emoji:"🧸"},
 {en:"make the bed",cn:"铺床",emoji:"🛏️"},
@@ -108,7 +109,7 @@ const modules=[
 {en:"help at home",cn:"在家帮忙",emoji:"🏠"},
 {en:"kitchen",cn:"厨房",emoji:"🍳"}
 ]},
-{name:"😊 U3 Feelings",color:"#48dbfb",words:[
+{name:"😊 U3",color:"#48dbfb",words:[
 {en:"happy",cn:"快乐的",emoji:"😊"},
 {en:"excited",cn:"激动的",emoji:"🤩"},
 {en:"upset",cn:"难过的",emoji:"😢"},
@@ -118,9 +119,9 @@ const modules=[
 {en:"clap your hands",cn:"拍手",emoji:"👏"},
 {en:"feel",cn:"感觉",emoji:"💭"}
 ]},
-{name:"🤖 U4 Robots",color:"#ff9ff3",words:[
+{name:"🤖 U4",color:"#ff9ff3",words:[
 {en:"play music",cn:"放音乐",emoji:"🎵"},
-{en:"sing and dance",cn:"唱歌跳舞",emoji:"🎤💃"},
+{en:"sing and dance",cn:"唱歌跳舞",emoji:"🎤"},
 {en:"talk with the baby",cn:"和婴儿说话",emoji:"👶"},
 {en:"robot",cn:"机器人",emoji:"🤖"},
 {en:"stand",cn:"站立",emoji:"🧍"},
@@ -128,9 +129,9 @@ const modules=[
 {en:"leg",cn:"腿",emoji:"🦵"},
 {en:"a lot of",cn:"许多",emoji:"🌟"}
 ]},
-{name:"👫 U5 Friends",color:"#55efc4",words:[
+{name:"👫 U5",color:"#55efc4",words:[
 {en:"play a game",cn:"玩游戏",emoji:"🎮"},
-{en:"talk and share",cn:"交谈和分享",emoji:"🗣️🤝"},
+{en:"talk and share",cn:"交谈和分享",emoji:"🗣️"},
 {en:"have a go",cn:"试一试",emoji:"💪"},
 {en:"friend",cn:"朋友",emoji:"👫"},
 {en:"new",cn:"新的",emoji:"✨"},
@@ -138,7 +139,7 @@ const modules=[
 {en:"nice",cn:"好的",emoji:"💛"},
 {en:"look for",cn:"寻找",emoji:"🔍"}
 ]},
-{name:"🌸 U6 Mothers",color:"#fd79a8",words:[
+{name:"🌸 U6",color:"#fd79a8",words:[
 {en:"cook",cn:"厨师",emoji:"👨‍🍳"},
 {en:"great",cn:"伟大的",emoji:"⭐"},
 {en:"teacher",cn:"老师",emoji:"👩‍🏫"},
@@ -148,7 +149,7 @@ const modules=[
 {en:"birthday",cn:"生日",emoji:"🎂"},
 {en:"love",cn:"爱",emoji:"❤️"}
 ]},
-{name:"🌿 U7 Plants",color:"#00b894",words:[
+{name:"🌿 U7",color:"#00b894",words:[
 {en:"tree",cn:"树",emoji:"🌳"},
 {en:"roots",cn:"根",emoji:"🌱"},
 {en:"trunk",cn:"树干",emoji:"🪵"},
@@ -158,7 +159,7 @@ const modules=[
 {en:"grass",cn:"草",emoji:"🌱"},
 {en:"seed",cn:"种子",emoji:"🫘"}
 ]},
-{name:"🦆 U8 Water",color:"#0984e3",words:[
+{name:"🦆 U8",color:"#0984e3",words:[
 {en:"duck",cn:"鸭子",emoji:"🦆"},
 {en:"pond",cn:"池塘",emoji:"💧"},
 {en:"frog",cn:"青蛙",emoji:"🐸"},
@@ -168,7 +169,7 @@ const modules=[
 {en:"sea",cn:"大海",emoji:"🌊"},
 {en:"fish",cn:"鱼",emoji:"🐟"}
 ]},
-{name:"🧼 U9 Hands",color:"#a29bfe",words:[
+{name:"🧼 U9",color:"#a29bfe",words:[
 {en:"wash my hands",cn:"洗手",emoji:"🧼"},
 {en:"before eating",cn:"饭前",emoji:"🍽️"},
 {en:"after using the toilet",cn:"便后",emoji:"🚽"},
@@ -178,7 +179,7 @@ const modules=[
 {en:"sand",cn:"沙子",emoji:"🏖️"},
 {en:"should",cn:"应该",emoji:"☝️"}
 ]},
-{name:"🌙 U10 Bedtime",color:"#6c5ce7",words:[
+{name:"🌙 U10",color:"#6c5ce7",words:[
 {en:"drink some milk",cn:"喝牛奶",emoji:"🥛"},
 {en:"say good night",cn:"说晚安",emoji:"🌙"},
 {en:"sleep tight",cn:"睡个好觉",emoji:"😴"},
@@ -190,130 +191,225 @@ const modules=[
 ]}
 ];
 
-let currentModule=0,currentGame='quiz',totalStars=parseInt(localStorage.getItem('totalStars')||'0'),soundEnabled=true,audioCtx;
+let currentModule=0,currentGame='quiz',totalStars=parseInt(localStorage.getItem('totalStars')||'0'),soundEnabled=true,audioCtx,timerInterval=null;
+
+// ===== VOICE: find best female English voice =====
+let girlVoice=null;
+function findGirlVoice(){
+  const voices=speechSynthesis.getVoices();
+  // Priority list: known good female voices
+  const preferred=['Google US English','Samantha','Victoria','Karen','Moira','Tessa','Fiona','Google UK English Female','Microsoft Zira','Microsoft Aria','Microsoft Eva','Alice','Google हिन्दी'];
+  for(const name of preferred){
+    const v=voices.find(v=>v.name.includes(name));
+    if(v){girlVoice=v;return}
+  }
+  // Fallback: any English female voice
+  const enF=voices.find(v=>v.lang.startsWith('en')&&(v.name.toLowerCase().includes('female')||v.name.includes('Samantha')||v.name.includes('Karen')||v.name.includes('Victoria')||v.name.includes('Zira')||v.name.includes('Aria')));
+  if(enF){girlVoice=enF;return}
+  // Last resort: any English voice
+  const en=voices.find(v=>v.lang.startsWith('en'));
+  if(en)girlVoice=en;
+}
+speechSynthesis.onvoiceschanged=findGirlVoice;
+findGirlVoice();
+
+function speak(t){
+  if(!soundEnabled)return;
+  try{
+    const u=new SpeechSynthesisUtterance(t);
+    u.lang='en-US';u.rate=0.85;u.pitch=1.2;
+    if(girlVoice)u.voice=girlVoice;
+    speechSynthesis.cancel();speechSynthesis.speak(u);
+  }catch(e){}
+}
 
 function getAudioCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx}
-function playNote(f,d=.15,t='sine'){if(!soundEnabled)return;try{const c=getAudioCtx(),o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.3,c.currentTime);g.gain.exponentialRampToValueAtTime(.01,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}catch(e){}}
+function playNote(f,d=.15,t='sine'){if(!soundEnabled)return;try{const c=getAudioCtx(),o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.2,c.currentTime);g.gain.exponentialRampToValueAtTime(.01,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}catch(e){}}
 function playCorrect(){playNote(523,.1);setTimeout(()=>playNote(659,.1),100);setTimeout(()=>playNote(784,.2),200)}
 function playWrong(){playNote(200,.2,'sawtooth')}
 function playClick(){playNote(440,.05)}
 function playWin(){[523,587,659,698,784,880,988,1047].forEach((f,i)=>setTimeout(()=>playNote(f,.15),i*100))}
-function speak(t){if(!soundEnabled)return;try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;u.pitch=1.1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function playTick(){playNote(800,.03)}
 function toggleSound(){soundEnabled=!soundEnabled;document.getElementById('soundBtn').textContent=soundEnabled?'🔊':'🔇'}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(s){return s.replace(/'/g,"\\'")}
 function addStars(n){totalStars+=n;localStorage.setItem('totalStars',totalStars);document.getElementById('totalStars').textContent=totalStars}
 function showConfetti(){const c=document.getElementById('confettiContainer');const colors=['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#55efc4','#a29bfe'];for(let i=0;i<40;i++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'%';d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*1+'s';d.style.animationDuration=(1.5+Math.random())+'s';c.appendChild(d)}setTimeout(()=>c.innerHTML='',3000)}
 
+function getWords(){
+  if(currentModule===-1){
+    // Mixed: all words from all units
+    let all=[];modules.forEach(m=>all=all.concat(m.words));return all;
+  }
+  return modules[currentModule].words;
+}
+function getWrongOptions(correctWord,count){
+  const pool=getWords().filter(w=>w.en!==correctWord.en);
+  shuffle(pool);return pool.slice(0,count);
+}
+
 function init(){document.getElementById('totalStars').textContent=totalStars;renderModuleTabs();startGame()}
-function renderModuleTabs(){document.getElementById('moduleTabs').innerHTML=modules.map((m,i)=>'<button class="module-tab'+(i===currentModule?' active':'')+'" style="background:'+m.color+'" onclick="selectModule('+i+')">'+m.name+'</button>').join('')}
+function renderModuleTabs(){
+  let html='<button class="module-tab'+(currentModule===-1?' active':'')+' mixed-label" onclick="selectModule(-1)">🔀 混合</button>';
+  html+=modules.map((m,i)=>'<button class="module-tab'+(i===currentModule?' active':'')+'" style="background:'+m.color+'" onclick="selectModule('+i+')">'+m.name+'</button>').join('');
+  document.getElementById('moduleTabs').innerHTML=html;
+}
 function selectModule(i){currentModule=i;renderModuleTabs();startGame()}
 function selectGame(t,btn){currentGame=t;document.querySelectorAll('.game-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');startGame()}
-function startGame(){playClick();switch(currentGame){case'quiz':startQuiz();break;case'memory':startMemory();break;case'spell':startSpell();break;case'listen':startListen();break}}
+function clearTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null}}
+function startGame(){clearTimer();playClick();switch(currentGame){case'quiz':startQuiz();break;case'memory':startMemory();break;case'spell':startSpell();break;case'listen':startListen();break}}
 
-// ===== QUIZ =====
+// ===== QUIZ: harder version =====
 let quizQ=[],quizI=0,quizS=0,quizA=false;
-function startQuiz(){const w=[...modules[currentModule].words];shuffle(w);quizQ=w.slice(0,6);quizI=0;quizS=0;renderQuiz()}
+function startQuiz(){
+  const w=[...getWords()];shuffle(w);
+  quizQ=w.slice(0,10).map(q=>{
+    // randomly choose direction: cn->en or en->cn
+    const dir=Math.random()<0.5?'cn2en':'en2cn';
+    return {...q,dir};
+  });
+  quizI=0;quizS=0;renderQuiz();
+}
 function renderQuiz(){
-if(quizI>=quizQ.length){showResult(quizS,quizQ.length);return}
-quizA=false;const q=quizQ[quizI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
-const opts=[q];for(let i=0;i<3&&i<wrong.length;i++)opts.push(wrong[i]);shuffle(opts);
-const p=(quizI/quizQ.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(quizI+1)+' / '+quizQ.length+' 题</div><div class="question-area"><div class="question-emoji">'+q.emoji+'</div><div class="question-text">"'+q.cn+'" 的英文是？</div></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkQuiz(this,\''+o.en.replace(/'/g,"\\'")+'\',\''+q.en.replace(/'/g,"\\'")+'\')">'+o.en+'</button>').join('')+'</div>';
+  if(quizI>=quizQ.length){clearTimer();showResult(quizS,quizQ.length);return}
+  quizA=false;const q=quizQ[quizI];
+  const wrongOpts=getWrongOptions(q,3);
+  const isCn2En=q.dir==='cn2en';
+  const opts=[q,...wrongOpts];shuffle(opts);
+
+  const p=(quizI/quizQ.length*100);
+  let questionHtml='';
+  if(isCn2En){
+    questionHtml='<div class="question-text">"'+q.cn+'" 的英文是？</div><div class="question-hint">选出正确的英文表达</div>';
+  }else{
+    questionHtml='<div class="question-text">"'+q.en+'" 是什么意思？</div><div class="question-hint">选出正确的中文意思</div>';
+  }
+
+  document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(quizI+1)+' / '+quizQ.length+' 题</div><div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div><div class="question-area">'+questionHtml+'</div><div class="options-grid">'+opts.map(o=>{
+    const label=isCn2En?o.en:o.cn;
+    const val=esc(o.en);
+    return '<button class="option-btn" onclick="checkQuiz(this,\''+val+'\',\''+esc(q.en)+'\')">'+label+'</button>';
+  }).join('')+'</div>';
+
+  startTimer(8);
+}
+function startTimer(seconds){
+  clearTimer();let left=seconds;
+  const fill=document.getElementById('timerFill');
+  timerInterval=setInterval(()=>{
+    left-=0.1;
+    if(!fill)return;
+    const pct=Math.max(0,left/seconds*100);
+    fill.style.width=pct+'%';
+    if(pct<30)fill.classList.add('danger');else fill.classList.remove('danger');
+    if(left<=0){clearTimer();if(!quizA){quizA=true;playWrong();setTimeout(()=>{quizI++;renderQuiz()},800)}}
+  },100);
 }
 function checkQuiz(btn,sel,cor){
-if(quizA)return;quizA=true;
-document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===cor)b.classList.add('correct')});
-if(sel===cor){quizS++;playCorrect();speak(cor)}
-else{btn.classList.add('wrong');playWrong()}
-setTimeout(()=>{quizI++;renderQuiz()},1000);
+  if(quizA)return;quizA=true;clearTimer();
+  if(sel===cor){btn.classList.add('correct');quizS++;playCorrect();speak(cor)}
+  else{btn.classList.add('wrong');playWrong();
+    document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===cor||b.innerHTML===cor)b.classList.add('correct')});
+  }
+  setTimeout(()=>{quizI++;renderQuiz()},1000);
 }
 
-// ===== MEMORY =====
+// ===== MEMORY: no emoji hints =====
 let memCards=[],memFlipped=[],memMatched=0,memLocked=false;
 function startMemory(){
-const w=[...modules[currentModule].words];shuffle(w);
-const pick=w.slice(0,6);
-memCards=[];pick.forEach((w,i)=>{memCards.push({text:w.emoji+' '+w.cn,type:'cn',pair:i});memCards.push({text:w.en,type:'en',pair:i})});
-shuffle(memCards);memFlipped=[];memMatched=0;memLocked=false;
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" id="memProgress" style="width:0%"></div></div><div class="score-text">找到所有配对！</div><div class="memory-grid" id="memGrid"></div>';
-const grid=document.getElementById('memGrid');
-memCards.forEach((c,i)=>{const el=document.createElement('button');el.className='memory-card';el.id='mc'+i;el.innerHTML='<div class="card-inner"><div class="card-front">❓</div><div class="card-back">'+c.text+'</div></div>';el.onclick=()=>flipCard(i);grid.appendChild(el)});
+  const w=[...getWords()];shuffle(w);
+  const pick=w.slice(0,6);
+  memCards=[];
+  pick.forEach((w,i)=>{memCards.push({text:w.cn,type:'cn',pair:i});memCards.push({text:w.en,type:'en',pair:i})});
+  shuffle(memCards);memFlipped=[];memMatched=0;memLocked=false;
+  document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" id="memProgress" style="width:0%"></div></div><div class="score-text">找到所有英中配对！</div><div class="memory-grid" id="memGrid"></div>';
+  const grid=document.getElementById('memGrid');
+  memCards.forEach((c,i)=>{const el=document.createElement('button');el.className='memory-card';el.id='mc'+i;el.innerHTML='<div class="card-inner"><div class="card-front">❓</div><div class="card-back">'+c.text+'</div></div>';el.onclick=()=>flipCard(i);grid.appendChild(el)});
 }
 function flipCard(i){
-if(memLocked)return;const el=document.getElementById('mc'+i);
-if(el.classList.contains('flipped')||el.classList.contains('matched'))return;
-el.classList.add('flipped');memFlipped.push(i);
-if(memFlipped.length===2){
-memLocked=true;const a=memCards[memFlipped[0]],b=memCards[memFlipped[1]];
-if(a.pair===b.pair&&a.type!==b.type){
-document.getElementById('mc'+memFlipped[0]).classList.add('matched');
-document.getElementById('mc'+memFlipped[1]).classList.add('matched');
-memMatched++;playCorrect();speak(a.type==='en'?a.text:b.text);
-document.getElementById('memProgress').style.width=(memMatched/6*100)+'%';
-memFlipped=[];memLocked=false;
-if(memMatched===6){setTimeout(()=>{addStars(3);showConfetti();playWin();showResult(6,6,true)},500)}
-}else{
-setTimeout(()=>{document.getElementById('mc'+memFlipped[0]).classList.remove('flipped');document.getElementById('mc'+memFlipped[1]).classList.remove('flipped');memFlipped=[];memLocked=false},800)}
-}
+  if(memLocked)return;const el=document.getElementById('mc'+i);
+  if(el.classList.contains('flipped')||el.classList.contains('matched'))return;
+  el.classList.add('flipped');memFlipped.push(i);
+  if(memFlipped.length===2){
+    memLocked=true;const a=memCards[memFlipped[0]],b=memCards[memFlipped[1]];
+    if(a.pair===b.pair&&a.type!==b.type){
+      document.getElementById('mc'+memFlipped[0]).classList.add('matched');
+      document.getElementById('mc'+memFlipped[1]).classList.add('matched');
+      memMatched++;playCorrect();speak(a.type==='en'?a.text:b.text);
+      document.getElementById('memProgress').style.width=(memMatched/6*100)+'%';
+      memFlipped=[];memLocked=false;
+      if(memMatched===6){setTimeout(()=>{addStars(3);showConfetti();playWin();showResult(6,6,true)},500)}
+    }else{
+      setTimeout(()=>{document.getElementById('mc'+memFlipped[0]).classList.remove('flipped');document.getElementById('mc'+memFlipped[1]).classList.remove('flipped');memFlipped=[];memLocked=false},900)}
+  }
 }
 
-// ===== SPELL =====
+// ===== SPELL: no emoji, more letters =====
 let spellWords=[],spellI=0,spellS=0,spellLetters=[];
-function startSpell(){const w=[...modules[currentModule].words].filter(w=>w.en.replace(/ /g,'').length<=8);shuffle(w);spellWords=w.slice(0,5);spellI=0;spellS=0;renderSpell()}
+function startSpell(){
+  const w=[...getWords()].filter(w=>w.en.replace(/ /g,'').length<=8);shuffle(w);
+  spellWords=w.slice(0,6);spellI=0;spellS=0;renderSpell();
+}
 function renderSpell(){
-if(spellI>=spellWords.length){showResult(spellS,spellWords.length);return}
-const w=spellWords[spellI];spellLetters=[];
-const letters=w.en.replace(/ /g,'').split('');
-const extra='abcdefghijklmnopqrstuvwxyz'.split('').filter(c=>!letters.includes(c));
-shuffle(extra);const pool=letters.concat(extra.slice(0,Math.max(0,8-letters.length)));shuffle(pool);
-const p=(spellI/spellWords.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(spellI+1)+' / '+spellWords.length+' 题</div><div class="question-area"><div class="question-emoji">'+w.emoji+'</div><div class="question-text">'+w.cn+'</div><div class="question-hint">请拼出这个单词（不含空格）</div></div><div class="spell-word" id="spellWord">'+letters.map(()=>'<div class="spell-letter">_</div>').join('')+'</div><div class="letter-choices" id="letterChoices">'+pool.map((c,i)=>'<button class="letter-choice" onclick="pickLetter(this,\''+c+'\',\''+w.en.replace(/ /g,'')+'\')">'+c+'</button>').join('')+'</div>';
+  if(spellI>=spellWords.length){clearTimer();showResult(spellS,spellWords.length);return}
+  const w=spellWords[spellI];spellLetters=[];
+  const letters=w.en.replace(/ /g,'').split('');
+  const extra='abcdefghijklmnopqrstuvwxyz'.split('').filter(c=>!letters.includes(c));
+  shuffle(extra);const pool=letters.concat(extra.slice(0,Math.max(0,10-letters.length)));shuffle(pool);
+  const p=(spellI/spellWords.length*100);
+  document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(spellI+1)+' / '+spellWords.length+' 题</div><div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div><div class="question-area"><div class="question-text">'+w.cn+'</div><div class="question-hint">请拼出英文（不含空格）</div></div><div class="spell-word" id="spellWord">'+letters.map(()=>'<div class="spell-letter">_</div>').join('')+'</div><div class="letter-choices" id="letterChoices">'+pool.map((c,i)=>'<button class="letter-choice" onclick="pickLetter(this,\''+c+'\',\''+w.en.replace(/ /g,'')+'\')">'+c+'</button>').join('')+'</div>';
+  startTimer(15);
 }
 function pickLetter(btn,letter,answer){
-playClick();spellLetters.push(letter);
-const slots=document.querySelectorAll('.spell-letter');
-const pos=spellLetters.length-1;
-if(pos<slots.length){slots[pos].textContent=letter;slots[pos].classList.add('filled')}
-btn.classList.add('used');
-if(spellLetters.length===answer.length){
-const typed=spellLetters.join('');
-if(typed===answer){spellS++;playCorrect();speak(answer);document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('correct-letter'))}
-else{playWrong();document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('wrong-letter'))}
-setTimeout(()=>{spellI++;spellLetters=[];renderSpell()},1000);
-}
+  playClick();spellLetters.push(letter);
+  const slots=document.querySelectorAll('.spell-letter');
+  const pos=spellLetters.length-1;
+  if(pos<slots.length){slots[pos].textContent=letter;slots[pos].classList.add('filled')}
+  btn.classList.add('used');
+  if(spellLetters.length===answer.length){
+    clearTimer();
+    const typed=spellLetters.join('');
+    if(typed===answer){spellS++;playCorrect();speak(answer);document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('correct-letter'))}
+    else{playWrong();document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('wrong-letter'))}
+    setTimeout(()=>{spellI++;spellLetters=[];renderSpell()},1000);
+  }
 }
 
-// ===== LISTEN =====
+// ===== LISTEN: harder, choose from English words =====
 let listenQ=[],listenI=0,listenS=0,listenA=false;
-function startListen(){const w=[...modules[currentModule].words];shuffle(w);listenQ=w.slice(0,6);listenI=0;listenS=0;renderListen()}
+function startListen(){const w=[...getWords()];shuffle(w);listenQ=w.slice(0,8);listenI=0;listenS=0;renderListen()}
 function renderListen(){
-if(listenI>=listenQ.length){showResult(listenS,listenQ.length);return}
-listenA=false;const q=listenQ[listenI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
-const opts=[q];for(let i=0;i<3&&i<wrong.length;i++)opts.push(wrong[i]);shuffle(opts);
-const p=(listenI/listenQ.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(listenI+1)+' / '+listenQ.length+' 题</div><div class="question-area"><div class="question-text">听一听，选一选 👂</div><button class="listen-btn" onclick="speak(\''+q.en.replace(/'/g,"\\'")+'\')">🔊</button></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkListen(this,\''+o.en.replace(/'/g,"\\'")+'\',\''+q.en.replace(/'/g,"\\'")+'\')">'+o.emoji+'<br>'+o.cn+'</button>').join('')+'</div>';
-setTimeout(()=>speak(q.en),300);
+  if(listenI>=listenQ.length){clearTimer();showResult(listenS,listenQ.length);return}
+  listenA=false;const q=listenQ[listenI];
+  const wrongOpts=getWrongOptions(q,3);
+  const opts=[q,...wrongOpts];shuffle(opts);
+  const p=(listenI/listenQ.length*100);
+  document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(listenI+1)+' / '+listenQ.length+' 题</div><div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div><div class="question-area"><div class="question-text">仔细听，选出你听到的 👂</div><button class="listen-btn" onclick="speak(\''+esc(q.en)+'\')">🔊</button><div class="question-hint">可以多次点击播放</div></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkListen(this,\''+esc(o.en)+'\',\''+esc(q.en)+'\')">'+o.en+'</button>').join('')+'</div>';
+  setTimeout(()=>speak(q.en),400);
+  startTimer(10);
 }
 function checkListen(btn,sel,cor){
-if(listenA)return;listenA=true;
-document.querySelectorAll('.option-btn').forEach(b=>{if(b.innerHTML.includes(cor))b.classList.add('correct')});
-if(sel===cor){listenS++;playCorrect()}
-else{btn.classList.add('wrong');playWrong();speak(cor)}
-setTimeout(()=>{listenI++;renderListen()},1200);
+  if(listenA)return;listenA=true;clearTimer();
+  if(sel===cor){listenS++;playCorrect();speak(cor)}
+  else{btn.classList.add('wrong');playWrong();
+    document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===cor)b.classList.add('correct')});
+  }
+  setTimeout(()=>{listenI++;renderListen()},1200);
 }
 
 // ===== RESULT =====
 function showResult(score,total,isMemory){
-const pct=score/total;let emoji,title,starCount;
-if(pct>=1){emoji='🏆';title='太棒了！满分！';starCount=5}
-else if(pct>=.8){emoji='🎉';title='非常厉害！';starCount=4}
-else if(pct>=.6){emoji='👍';title='做得不错！';starCount=3}
-else if(pct>=.4){emoji='💪';title='继续加油！';starCount=2}
-else{emoji='📖';title='再练练吧！';starCount=1}
-addStars(starCount);
-if(starCount>=4){showConfetti();playWin()}
-const stars='⭐'.repeat(starCount)+'☆'.repeat(5-starCount);
-document.getElementById('gameContent').innerHTML='<div class="result-screen"><div class="result-emoji">'+emoji+'</div><div class="result-title">'+title+'</div><div class="result-score">答对 '+score+' / '+total+'</div><div class="result-stars">'+stars+'</div><button class="play-again-btn" onclick="startGame()">🔄 再玩一次</button></div>';
+  clearTimer();
+  const pct=score/total;let emoji,title,starCount;
+  if(pct>=1){emoji='🏆';title='太棒了！满分！';starCount=5}
+  else if(pct>=.8){emoji='🎉';title='非常厉害！';starCount=4}
+  else if(pct>=.6){emoji='👍';title='做得不错！';starCount=3}
+  else if(pct>=.4){emoji='💪';title='继续加油！';starCount=2}
+  else{emoji='📖';title='再练练吧！';starCount=1}
+  addStars(starCount);
+  if(starCount>=4){showConfetti();playWin()}
+  const stars='⭐'.repeat(starCount)+'☆'.repeat(5-starCount);
+  document.getElementById('gameContent').innerHTML='<div class="result-screen"><div class="result-emoji">'+emoji+'</div><div class="result-title">'+title+'</div><div class="result-score">答对 '+score+' / '+total+'</div><div class="result-stars">'+stars+'</div><button class="play-again-btn" onclick="startGame()">🔄 再玩一次</button></div>';
 }
 
 init();
