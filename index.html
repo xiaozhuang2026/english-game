@@ -8,71 +8,73 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Comic Sans MS','Arial Rounded MT Bold',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;overflow-x:hidden}
 .container{max-width:800px;margin:0 auto;padding:10px}
-h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0,.3);padding:15px 0 5px}
-.subtitle{text-align:center;color:#ffe066;font-size:.9em;margin-bottom:10px}
-.stars-bar{display:flex;justify-content:center;align-items:center;gap:10px;background:rgba(255,255,255,.15);border-radius:30px;padding:8px 20px;margin:5px auto 15px;width:fit-content}
+h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0,.3);padding:12px 0 5px}
+.subtitle{text-align:center;color:#ffe066;font-size:.85em;margin-bottom:8px}
+.stars-bar{display:flex;justify-content:center;align-items:center;gap:10px;background:rgba(255,255,255,.15);border-radius:30px;padding:8px 20px;margin:5px auto 12px;width:fit-content}
 .stars-bar span{font-size:1.3em;color:#ffe066;font-weight:bold}
-.stars-bar .star-icon{font-size:1.6em}
-.module-tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:12px}
-.module-tab{padding:8px 14px;border-radius:20px;border:none;font-size:.85em;font-weight:bold;cursor:pointer;transition:all .3s;color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
-.module-tab.active{transform:scale(1.1);box-shadow:0 4px 15px rgba(0,0,0,.3)}
-.module-tab:nth-child(1){background:#ff6b6b}.module-tab:nth-child(2){background:#feca57}.module-tab:nth-child(3){background:#48dbfb}.module-tab:nth-child(4){background:#ff9ff3}
-.game-selector{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:15px}
-.game-btn{padding:12px 20px;border-radius:16px;border:3px solid rgba(255,255,255,.5);background:rgba(255,255,255,.2);color:#fff;font-size:1.1em;font-weight:bold;cursor:pointer;transition:all .3s;backdrop-filter:blur(5px)}
-.game-btn:hover,.game-btn.active{background:rgba(255,255,255,.4);border-color:#fff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
-.game-area{background:rgba(255,255,255,.95);border-radius:24px;padding:20px;min-height:400px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
-.question-area{text-align:center;margin-bottom:20px}
-.question-text{font-size:1.8em;color:#2d3436;font-weight:bold;margin-bottom:5px}
-.question-hint{font-size:1em;color:#636e72}
-.question-emoji{font-size:3.5em;margin:10px 0}
-.options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;margin:0 auto}
-.option-btn{padding:16px 10px;border-radius:16px;border:3px solid #dfe6e9;background:#fff;font-size:1.3em;font-weight:bold;cursor:pointer;transition:all .3s;color:#2d3436;min-height:60px;display:flex;align-items:center;justify-content:center}
+.stars-bar .star-icon{font-size:1.5em}
+.module-tabs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:10px}
+.module-tab{padding:7px 12px;border-radius:18px;border:none;font-size:.78em;font-weight:bold;cursor:pointer;transition:all .3s;color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
+.module-tab.active{transform:scale(1.08);box-shadow:0 4px 15px rgba(0,0,0,.3)}
+.game-selector{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
+.game-btn{padding:10px 18px;border-radius:14px;border:3px solid rgba(255,255,255,.5);background:rgba(255,255,255,.2);color:#fff;font-size:1em;font-weight:bold;cursor:pointer;transition:all .3s;backdrop-filter:blur(5px)}
+.game-btn:hover,.game-btn.active{background:rgba(255,255,255,.4);border-color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.game-area{background:rgba(255,255,255,.95);border-radius:22px;padding:18px;min-height:380px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+.question-area{text-align:center;margin-bottom:15px}
+.question-text{font-size:1.6em;color:#2d3436;font-weight:bold;margin-bottom:5px}
+.question-hint{font-size:.9em;color:#636e72}
+.question-emoji{font-size:3em;margin:8px 0}
+.options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:480px;margin:0 auto}
+.option-btn{padding:14px 8px;border-radius:14px;border:3px solid #dfe6e9;background:#fff;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .3s;color:#2d3436;min-height:55px;display:flex;align-items:center;justify-content:center;text-align:center}
 .option-btn:hover{border-color:#74b9ff;background:#f0f7ff;transform:scale(1.03)}
 .option-btn.correct{background:#00b894!important;color:#fff!important;border-color:#00b894!important;animation:pop .4s ease}
 .option-btn.wrong{background:#ff7675!important;color:#fff!important;border-color:#ff7675!important;animation:shake .4s ease}
 @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:0 auto}
-.memory-card{aspect-ratio:1;border-radius:14px;border:none;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .4s;perspective:600px}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:400px;margin:0 auto}
+.memory-card{aspect-ratio:1;border-radius:12px;border:none;font-weight:bold;cursor:pointer;transition:all .4s;perspective:600px}
 .memory-card .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s}
 .memory-card.flipped .card-inner{transform:rotateY(180deg)}
-.memory-card .card-front,.memory-card .card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;text-align:center}
-.memory-card .card-front{background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;font-size:2em}
+.memory-card .card-front,.memory-card .card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;text-align:center;font-size:1em}
+.memory-card .card-front{background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;font-size:1.8em}
 .memory-card .card-back{background:#fff;border:3px solid #dfe6e9;transform:rotateY(180deg);color:#2d3436}
 .memory-card.matched .card-back{background:#55efc4;border-color:#00b894}
 .memory-card.matched{pointer-events:none}
-.spell-word{display:flex;justify-content:center;gap:8px;margin:15px 0;flex-wrap:wrap}
-.spell-letter{width:48px;height:56px;border-radius:12px;border:3px solid #b2bec3;background:#fff;font-size:1.8em;font-weight:bold;text-align:center;line-height:50px;color:#2d3436;text-transform:lowercase}
+.spell-word{display:flex;justify-content:center;gap:6px;margin:12px 0;flex-wrap:wrap}
+.spell-letter{width:42px;height:50px;border-radius:10px;border:3px solid #b2bec3;background:#fff;font-size:1.6em;font-weight:bold;text-align:center;line-height:44px;color:#2d3436;text-transform:lowercase}
 .spell-letter.filled{border-color:#6c5ce7;background:#f0edff;color:#6c5ce7}
-.letter-choices{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:15px}
-.letter-choice{width:48px;height:48px;border-radius:12px;border:2px solid #dfe6e9;background:#fff;font-size:1.5em;font-weight:bold;cursor:pointer;transition:all .2s;color:#2d3436;text-transform:lowercase}
+.letter-choices{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.letter-choice{width:42px;height:42px;border-radius:10px;border:2px solid #dfe6e9;background:#fff;font-size:1.4em;font-weight:bold;cursor:pointer;transition:all .2s;color:#2d3436;text-transform:lowercase}
 .letter-choice:hover{border-color:#6c5ce7;background:#f0edff}
 .letter-choice.used{opacity:.3;pointer-events:none}
-.progress-bar{width:100%;height:12px;background:#dfe6e9;border-radius:6px;margin:10px 0;overflow:hidden}
-.progress-fill{height:100%;background:linear-gradient(90deg,#00b894,#55efc4);border-radius:6px;transition:width .5s}
-.score-text{text-align:center;color:#636e72;font-size:.9em;margin-top:5px}
-.result-screen{text-align:center;padding:30px 0}
-.result-emoji{font-size:4em;margin-bottom:10px}
-.result-title{font-size:1.8em;color:#2d3436;font-weight:bold}
-.result-score{font-size:1.3em;color:#636e72;margin:10px 0}
-.result-stars{font-size:2.5em;margin:10px 0}
-.play-again-btn{margin-top:15px;padding:14px 36px;border-radius:30px;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:1.2em;font-weight:bold;cursor:pointer;transition:all .3s}
+.progress-bar{width:100%;height:10px;background:#dfe6e9;border-radius:5px;margin:8px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00b894,#55efc4);border-radius:5px;transition:width .5s}
+.score-text{text-align:center;color:#636e72;font-size:.85em;margin-top:4px}
+.result-screen{text-align:center;padding:25px 0}
+.result-emoji{font-size:3.5em;margin-bottom:8px}
+.result-title{font-size:1.6em;color:#2d3436;font-weight:bold}
+.result-score{font-size:1.2em;color:#636e72;margin:8px 0}
+.result-stars{font-size:2.2em;margin:8px 0}
+.play-again-btn{margin-top:12px;padding:12px 30px;border-radius:25px;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:1.1em;font-weight:bold;cursor:pointer;transition:all .3s}
 .play-again-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(108,92,231,.4)}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .floating{animation:float 3s ease-in-out infinite}
 .confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
 .confetti{position:absolute;width:10px;height:10px;border-radius:50%;animation:confetti-fall 2s ease-in forwards}
 @keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.sound-btn{position:fixed;top:15px;right:15px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.3);font-size:1.4em;cursor:pointer;z-index:100;backdrop-filter:blur(5px)}
-.listen-btn{padding:15px;border-radius:50%;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:2em;cursor:pointer;transition:all .3s;width:80px;height:80px;display:inline-flex;align-items:center;justify-content:center}
+.sound-btn{position:fixed;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.3);font-size:1.3em;cursor:pointer;z-index:100;backdrop-filter:blur(5px)}
+.listen-btn{padding:12px;border-radius:50%;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-size:1.8em;cursor:pointer;transition:all .3s;width:70px;height:70px;display:inline-flex;align-items:center;justify-content:center}
 .listen-btn:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(108,92,231,.4)}
+.cat-btn{padding:6px 14px;border-radius:15px;border:2px solid #dfe6e9;background:#fff;color:#636e72;font-size:.85em;cursor:pointer;transition:all .2s;margin:2px}
+.cat-btn.active{background:#6c5ce7;color:#fff;border-color:#6c5ce7}
+.cat-btn:hover{border-color:#6c5ce7}
 </style>
 </head>
 <body>
 <button class="sound-btn" onclick="toggleSound()" id="soundBtn">🔊</button>
 <div class="container">
 <h1 class="floating">🎮 英语小达人</h1>
-<div class="subtitle">📚 沪教版牛津上海版 · 二年级下册</div>
+<div class="subtitle">📚 沪教版新教材 · 二年级下册</div>
 <div class="stars-bar"><span class="star-icon">⭐</span><span id="totalStars">0</span></div>
 <div class="module-tabs" id="moduleTabs"></div>
 <div class="game-selector" id="gameSelector">
@@ -86,34 +88,106 @@ h1{text-align:center;color:#fff;font-size:2em;text-shadow:3px 3px 6px rgba(0,0,0
 <div class="confetti-container" id="confettiContainer"></div>
 <script>
 const modules=[
-{name:"📱 Module 1",color:"#ff6b6b",words:[
-{en:"touch",cn:"触摸",emoji:"🤚"},{en:"feel",cn:"感觉",emoji:"😊"},{en:"hard",cn:"硬的",emoji:"🧱"},
-{en:"soft",cn:"软的",emoji:"🧸"},{en:"smooth",cn:"光滑的",emoji:"🪞"},{en:"rough",cn:"粗糙的",emoji:"🪨"},
-{en:"watch",cn:"手表",emoji:"⌚"},{en:"bag",cn:"包",emoji:"🎒"},{en:"pineapple",cn:"菠萝",emoji:"🍍"},
-{en:"cake",cn:"蛋糕",emoji:"🎂"},{en:"melon",cn:"瓜",emoji:"🍈"},{en:"lemon",cn:"柠檬",emoji:"🍋"},
-{en:"peach",cn:"桃子",emoji:"🍑"},{en:"cherry",cn:"樱桃",emoji:"🍒"},{en:"strawberry",cn:"草莓",emoji:"🍓"},
-{en:"grape",cn:"葡萄",emoji:"🍇"}]},
-{name:"🏠 Module 2",color:"#feca57",words:[
-{en:"run",cn:"跑",emoji:"🏃"},{en:"write",cn:"写",emoji:"✍️"},{en:"swim",cn:"游泳",emoji:"🏊"},
-{en:"fly",cn:"飞",emoji:"🦅"},{en:"hop",cn:"跳",emoji:"🐇"},{en:"cook",cn:"做饭",emoji:"👨‍🍳"},
-{en:"can",cn:"能",emoji:"💪"},{en:"skip",cn:"跳绳",emoji:"🤸"},{en:"ride",cn:"骑",emoji:"🚴"},
-{en:"football",cn:"足球",emoji:"⚽"},{en:"rope",cn:"绳子",emoji:"🪢"},{en:"bicycle",cn:"自行车",emoji:"🚲"},
-{en:"salad",cn:"沙拉",emoji:"🥗"},{en:"carrot",cn:"胡萝卜",emoji:"🥕"},{en:"fish",cn:"鱼",emoji:"🐟"},
-{en:"chicken",cn:"鸡肉",emoji:"🍗"}]},
-{name:"🌈 Module 3",color:"#48dbfb",words:[
-{en:"spring",cn:"春天",emoji:"🌸"},{en:"summer",cn:"夏天",emoji:"☀️"},{en:"autumn",cn:"秋天",emoji:"🍂"},
-{en:"winter",cn:"冬天",emoji:"❄️"},{en:"warm",cn:"温暖的",emoji:"🌤️"},{en:"hot",cn:"热的",emoji:"🥵"},
-{en:"cool",cn:"凉爽的",emoji:"🍃"},{en:"cold",cn:"冷的",emoji:"🥶"},{en:"sunny",cn:"晴朗的",emoji:"🌞"},
-{en:"rainy",cn:"下雨的",emoji:"🌧️"},{en:"windy",cn:"有风的",emoji:"💨"},{en:"cloudy",cn:"多云的",emoji:"⛅"},
-{en:"shirt",cn:"衬衫",emoji:"👔"},{en:"dress",cn:"裙子",emoji:"👗"},{en:"coat",cn:"外套",emoji:"🧥"},
-{en:"shorts",cn:"短裤",emoji:"🩳"}]},
-{name:"🔔 Module 4",color:"#ff9ff3",words:[
-{en:"letter",cn:"信",emoji:"✉️"},{en:"homework",cn:"作业",emoji:"📝"},{en:"pencil",cn:"铅笔",emoji:"✏️"},
-{en:"ruler",cn:"尺子",emoji:"📏"},{en:"book",cn:"书",emoji:"📖"},{en:"rubber",cn:"橡皮",emoji:"🟫"},
-{en:"train",cn:"火车",emoji:"🚂"},{en:"bus",cn:"公交车",emoji:"🚌"},{en:"ship",cn:"船",emoji:"🚢"},
-{en:"plane",cn:"飞机",emoji:"✈️"},{en:"underground",cn:"地铁",emoji:"🚇"},{en:"walk",cn:"走路",emoji:"🚶"},
-{en:"go",cn:"去",emoji:"👉"},{en:"by",cn:"乘",emoji:"🎫"},{en:"children",cn:"孩子们",emoji:"👦"},
-{en:"play",cn:"玩",emoji:"🎮"}]}
+{name:"🏖️ U1 Holidays",color:"#ff6b6b",words:[
+{en:"feed the cows",cn:"喂奶牛",emoji:"🐄"},
+{en:"see a film",cn:"看电影",emoji:"🎬"},
+{en:"visit Grandma and Grandpa",cn:"看望爷爷奶奶",emoji:"👴👵"},
+{en:"have a good time",cn:"过得愉快",emoji:"😄"},
+{en:"holiday",cn:"假期",emoji:"🏖️"},
+{en:"farm",cn:"农场",emoji:"🌾"},
+{en:"skate",cn:"滑冰",emoji:"⛸️"},
+{en:"fresh air",cn:"新鲜空气",emoji:"🌬️"}
+]},
+{name:"🧹 U2 Housework",color:"#feca57",words:[
+{en:"do the housework",cn:"做家务",emoji:"🧹"},
+{en:"tidy my room",cn:"整理我的房间",emoji:"🧸"},
+{en:"make the bed",cn:"铺床",emoji:"🛏️"},
+{en:"clean the table",cn:"擦桌子",emoji:"🪣"},
+{en:"dish",cn:"盘子",emoji:"🍽️"},
+{en:"wash",cn:"洗",emoji:"🫧"},
+{en:"help at home",cn:"在家帮忙",emoji:"🏠"},
+{en:"kitchen",cn:"厨房",emoji:"🍳"}
+]},
+{name:"😊 U3 Feelings",color:"#48dbfb",words:[
+{en:"happy",cn:"快乐的",emoji:"😊"},
+{en:"excited",cn:"激动的",emoji:"🤩"},
+{en:"upset",cn:"难过的",emoji:"😢"},
+{en:"angry",cn:"生气的",emoji:"😠"},
+{en:"tired",cn:"疲劳的",emoji:"😴"},
+{en:"scared",cn:"害怕的",emoji:"😨"},
+{en:"clap your hands",cn:"拍手",emoji:"👏"},
+{en:"feel",cn:"感觉",emoji:"💭"}
+]},
+{name:"🤖 U4 Robots",color:"#ff9ff3",words:[
+{en:"play music",cn:"放音乐",emoji:"🎵"},
+{en:"sing and dance",cn:"唱歌跳舞",emoji:"🎤💃"},
+{en:"talk with the baby",cn:"和婴儿说话",emoji:"👶"},
+{en:"robot",cn:"机器人",emoji:"🤖"},
+{en:"stand",cn:"站立",emoji:"🧍"},
+{en:"great",cn:"伟大的",emoji:"👍"},
+{en:"leg",cn:"腿",emoji:"🦵"},
+{en:"a lot of",cn:"许多",emoji:"🌟"}
+]},
+{name:"👫 U5 Friends",color:"#55efc4",words:[
+{en:"play a game",cn:"玩游戏",emoji:"🎮"},
+{en:"talk and share",cn:"交谈和分享",emoji:"🗣️🤝"},
+{en:"have a go",cn:"试一试",emoji:"💪"},
+{en:"friend",cn:"朋友",emoji:"👫"},
+{en:"new",cn:"新的",emoji:"✨"},
+{en:"together",cn:"一起",emoji:"🤗"},
+{en:"nice",cn:"好的",emoji:"💛"},
+{en:"look for",cn:"寻找",emoji:"🔍"}
+]},
+{name:"🌸 U6 Mothers",color:"#fd79a8",words:[
+{en:"cook",cn:"厨师",emoji:"👨‍🍳"},
+{en:"great",cn:"伟大的",emoji:"⭐"},
+{en:"teacher",cn:"老师",emoji:"👩‍🏫"},
+{en:"nice",cn:"好的",emoji:"💖"},
+{en:"super",cn:"超级的",emoji:"🦸"},
+{en:"flower card",cn:"花卡片",emoji:"💐"},
+{en:"birthday",cn:"生日",emoji:"🎂"},
+{en:"love",cn:"爱",emoji:"❤️"}
+]},
+{name:"🌿 U7 Plants",color:"#00b894",words:[
+{en:"tree",cn:"树",emoji:"🌳"},
+{en:"roots",cn:"根",emoji:"🌱"},
+{en:"trunk",cn:"树干",emoji:"🪵"},
+{en:"branches",cn:"树枝",emoji:"🌿"},
+{en:"leaves",cn:"叶子",emoji:"🍃"},
+{en:"flower",cn:"花",emoji:"🌸"},
+{en:"grass",cn:"草",emoji:"🌱"},
+{en:"seed",cn:"种子",emoji:"🫘"}
+]},
+{name:"🦆 U8 Water",color:"#0984e3",words:[
+{en:"duck",cn:"鸭子",emoji:"🦆"},
+{en:"pond",cn:"池塘",emoji:"💧"},
+{en:"frog",cn:"青蛙",emoji:"🐸"},
+{en:"lake",cn:"湖泊",emoji:"🏞️"},
+{en:"river",cn:"河流",emoji:"🏞️"},
+{en:"shark",cn:"鲨鱼",emoji:"🦈"},
+{en:"sea",cn:"大海",emoji:"🌊"},
+{en:"fish",cn:"鱼",emoji:"🐟"}
+]},
+{name:"🧼 U9 Hands",color:"#a29bfe",words:[
+{en:"wash my hands",cn:"洗手",emoji:"🧼"},
+{en:"before eating",cn:"饭前",emoji:"🍽️"},
+{en:"after using the toilet",cn:"便后",emoji:"🚽"},
+{en:"dirty",cn:"脏的",emoji:"🤮"},
+{en:"clean",cn:"干净的",emoji:"✨"},
+{en:"keep",cn:"保持",emoji:"🛡️"},
+{en:"sand",cn:"沙子",emoji:"🏖️"},
+{en:"should",cn:"应该",emoji:"☝️"}
+]},
+{name:"🌙 U10 Bedtime",color:"#6c5ce7",words:[
+{en:"drink some milk",cn:"喝牛奶",emoji:"🥛"},
+{en:"say good night",cn:"说晚安",emoji:"🌙"},
+{en:"sleep tight",cn:"睡个好觉",emoji:"😴"},
+{en:"brush my teeth",cn:"刷牙",emoji:"🪥"},
+{en:"pack the schoolbag",cn:"收拾书包",emoji:"🎒"},
+{en:"put away the toys",cn:"收玩具",emoji:"🧸"},
+{en:"listen to a story",cn:"听故事",emoji:"📖"},
+{en:"bedtime",cn:"就寝时间",emoji:"🛏️"}
+]}
 ];
 
 let currentModule=0,currentGame='quiz',totalStars=parseInt(localStorage.getItem('totalStars')||'0'),soundEnabled=true,audioCtx;
@@ -126,31 +200,30 @@ function playClick(){playNote(440,.05)}
 function playWin(){[523,587,659,698,784,880,988,1047].forEach((f,i)=>setTimeout(()=>playNote(f,.15),i*100))}
 function speak(t){if(!soundEnabled)return;try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;u.pitch=1.1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 function toggleSound(){soundEnabled=!soundEnabled;document.getElementById('soundBtn').textContent=soundEnabled?'🔊':'🔇'}
-
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function addStars(n){totalStars+=n;localStorage.setItem('totalStars',totalStars);document.getElementById('totalStars').textContent=totalStars}
 function showConfetti(){const c=document.getElementById('confettiContainer');const colors=['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#55efc4','#a29bfe'];for(let i=0;i<40;i++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'%';d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*1+'s';d.style.animationDuration=(1.5+Math.random())+'s';c.appendChild(d)}setTimeout(()=>c.innerHTML='',3000)}
 
 function init(){document.getElementById('totalStars').textContent=totalStars;renderModuleTabs();startGame()}
-function renderModuleTabs(){document.getElementById('moduleTabs').innerHTML=modules.map((m,i)=>'<button class="module-tab'+(i===currentModule?' active':'')+'" onclick="selectModule('+i+')">'+m.name+'</button>').join('')}
+function renderModuleTabs(){document.getElementById('moduleTabs').innerHTML=modules.map((m,i)=>'<button class="module-tab'+(i===currentModule?' active':'')+'" style="background:'+m.color+'" onclick="selectModule('+i+')">'+m.name+'</button>').join('')}
 function selectModule(i){currentModule=i;renderModuleTabs();startGame()}
 function selectGame(t,btn){currentGame=t;document.querySelectorAll('.game-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');startGame()}
 function startGame(){playClick();switch(currentGame){case'quiz':startQuiz();break;case'memory':startMemory();break;case'spell':startSpell();break;case'listen':startListen();break}}
 
 // ===== QUIZ =====
 let quizQ=[],quizI=0,quizS=0,quizA=false;
-function startQuiz(){const w=[...modules[currentModule].words];shuffle(w);quizQ=w.slice(0,8);quizI=0;quizS=0;renderQuiz()}
+function startQuiz(){const w=[...modules[currentModule].words];shuffle(w);quizQ=w.slice(0,6);quizI=0;quizS=0;renderQuiz()}
 function renderQuiz(){
 if(quizI>=quizQ.length){showResult(quizS,quizQ.length);return}
 quizA=false;const q=quizQ[quizI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
-const opts=[q,wrong[0],wrong[1],wrong[2]];shuffle(opts);
+const opts=[q];for(let i=0;i<3&&i<wrong.length;i++)opts.push(wrong[i]);shuffle(opts);
 const p=(quizI/quizQ.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(quizI+1)+' / '+quizQ.length+' 题</div><div class="question-area"><div class="question-emoji">'+q.emoji+'</div><div class="question-text">"'+q.cn+'" 的英文是？</div></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkQuiz(this,\''+o.en+'\',\''+q.en+'\')">'+o.en+'</button>').join('')+'</div>';
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(quizI+1)+' / '+quizQ.length+' 题</div><div class="question-area"><div class="question-emoji">'+q.emoji+'</div><div class="question-text">"'+q.cn+'" 的英文是？</div></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkQuiz(this,\''+o.en.replace(/'/g,"\\'")+'\',\''+q.en.replace(/'/g,"\\'")+'\')">'+o.en+'</button>').join('')+'</div>';
 }
 function checkQuiz(btn,sel,cor){
 if(quizA)return;quizA=true;
 document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent===cor)b.classList.add('correct')});
-if(sel===cor){btn.classList.add('correct');quizS++;playCorrect();speak(cor)}
+if(sel===cor){quizS++;playCorrect();speak(cor)}
 else{btn.classList.add('wrong');playWrong()}
 setTimeout(()=>{quizI++;renderQuiz()},1000);
 }
@@ -160,10 +233,9 @@ let memCards=[],memFlipped=[],memMatched=0,memLocked=false;
 function startMemory(){
 const w=[...modules[currentModule].words];shuffle(w);
 const pick=w.slice(0,6);
-memCards=[];pick.forEach((w,i)=>{memCards.push({id:i*2,text:w.emoji+' '+w.cn,type:'cn',pair:i});memCards.push({id:i*2+1,text:w.en,type:'en',pair:i})});
+memCards=[];pick.forEach((w,i)=>{memCards.push({text:w.emoji+' '+w.cn,type:'cn',pair:i});memCards.push({text:w.en,type:'en',pair:i})});
 shuffle(memCards);memFlipped=[];memMatched=0;memLocked=false;
-const gc=document.getElementById('gameContent');
-gc.innerHTML='<div class="progress-bar"><div class="progress-fill" id="memProgress" style="width:0%"></div></div><div class="score-text">找到所有配对！</div><div class="memory-grid" id="memGrid"></div>';
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" id="memProgress" style="width:0%"></div></div><div class="score-text">找到所有配对！</div><div class="memory-grid" id="memGrid"></div>';
 const grid=document.getElementById('memGrid');
 memCards.forEach((c,i)=>{const el=document.createElement('button');el.className='memory-card';el.id='mc'+i;el.innerHTML='<div class="card-inner"><div class="card-front">❓</div><div class="card-back">'+c.text+'</div></div>';el.onclick=()=>flipCard(i);grid.appendChild(el)});
 }
@@ -187,44 +259,45 @@ setTimeout(()=>{document.getElementById('mc'+memFlipped[0]).classList.remove('fl
 
 // ===== SPELL =====
 let spellWords=[],spellI=0,spellS=0,spellLetters=[];
-function startSpell(){const w=[...modules[currentModule].words].filter(w=>w.en.length<=7);shuffle(w);spellWords=w.slice(0,6);spellI=0;spellS=0;renderSpell()}
+function startSpell(){const w=[...modules[currentModule].words].filter(w=>w.en.replace(/ /g,'').length<=8);shuffle(w);spellWords=w.slice(0,5);spellI=0;spellS=0;renderSpell()}
 function renderSpell(){
 if(spellI>=spellWords.length){showResult(spellS,spellWords.length);return}
-const w=spellWords[spellI];spellLetters=[];const blanks=w.en.split('').map(()=>'_').join('');
-const extra='abcdefghijklmnopqrstuvwxyz'.split('').filter(c=>!w.en.includes(c));
-shuffle(extra);const pool=w.en.split('').concat(extra.slice(0,Math.max(0,8-w.en.length)));shuffle(pool);
+const w=spellWords[spellI];spellLetters=[];
+const letters=w.en.replace(/ /g,'').split('');
+const extra='abcdefghijklmnopqrstuvwxyz'.split('').filter(c=>!letters.includes(c));
+shuffle(extra);const pool=letters.concat(extra.slice(0,Math.max(0,8-letters.length)));shuffle(pool);
 const p=(spellI/spellWords.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(spellI+1)+' / '+spellWords.length+' 题</div><div class="question-area"><div class="question-emoji">'+w.emoji+'</div><div class="question-text">'+w.cn+'</div><div class="question-hint">请拼出这个单词</div></div><div class="spell-word" id="spellWord">'+w.en.split('').map(()=>'<div class="spell-letter">_</div>').join('')+'</div><div class="letter-choices" id="letterChoices">'+pool.map((c,i)=>'<button class="letter-choice" onclick="pickLetter(this,\''+c+'\','+i+',\''+w.en+'\')">'+c+'</button>').join('')+'</div>';
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(spellI+1)+' / '+spellWords.length+' 题</div><div class="question-area"><div class="question-emoji">'+w.emoji+'</div><div class="question-text">'+w.cn+'</div><div class="question-hint">请拼出这个单词（不含空格）</div></div><div class="spell-word" id="spellWord">'+letters.map(()=>'<div class="spell-letter">_</div>').join('')+'</div><div class="letter-choices" id="letterChoices">'+pool.map((c,i)=>'<button class="letter-choice" onclick="pickLetter(this,\''+c+'\',\''+w.en.replace(/ /g,'')+'\')">'+c+'</button>').join('')+'</div>';
 }
-function pickLetter(btn,letter,idx,answer){
-playClick();spellLetters.push({letter,idx});
+function pickLetter(btn,letter,answer){
+playClick();spellLetters.push(letter);
 const slots=document.querySelectorAll('.spell-letter');
 const pos=spellLetters.length-1;
 if(pos<slots.length){slots[pos].textContent=letter;slots[pos].classList.add('filled')}
 btn.classList.add('used');
 if(spellLetters.length===answer.length){
-const typed=spellLetters.map(l=>l.letter).join('');
-if(typed===answer){spellS++;playCorrect();speak(answer);document.querySelectorAll('.spell-letter').forEach(s=>{s.classList.add('correct-letter')})}
-else{playWrong();document.querySelectorAll('.spell-letter').forEach(s=>{s.classList.add('wrong-letter')})}
+const typed=spellLetters.join('');
+if(typed===answer){spellS++;playCorrect();speak(answer);document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('correct-letter'))}
+else{playWrong();document.querySelectorAll('.spell-letter').forEach(s=>s.classList.add('wrong-letter'))}
 setTimeout(()=>{spellI++;spellLetters=[];renderSpell()},1000);
 }
 }
 
 // ===== LISTEN =====
 let listenQ=[],listenI=0,listenS=0,listenA=false;
-function startListen(){const w=[...modules[currentModule].words];shuffle(w);listenQ=w.slice(0,8);listenI=0;listenS=0;renderListen()}
+function startListen(){const w=[...modules[currentModule].words];shuffle(w);listenQ=w.slice(0,6);listenI=0;listenS=0;renderListen()}
 function renderListen(){
 if(listenI>=listenQ.length){showResult(listenS,listenQ.length);return}
 listenA=false;const q=listenQ[listenI],all=modules[currentModule].words,wrong=all.filter(w=>w.en!==q.en);shuffle(wrong);
-const opts=[q,wrong[0],wrong[1],wrong[2]];shuffle(opts);
+const opts=[q];for(let i=0;i<3&&i<wrong.length;i++)opts.push(wrong[i]);shuffle(opts);
 const p=(listenI/listenQ.length*100);
-document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(listenI+1)+' / '+listenQ.length+' 题</div><div class="question-area"><div class="question-text">听一听，选一选 👂</div><button class="listen-btn" onclick="speak(\''+q.en+'\')">🔊</button></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkListen(this,\''+o.en+'\',\''+q.en+'\')">'+o.emoji+'<br>'+o.cn+'</button>').join('')+'</div>';
+document.getElementById('gameContent').innerHTML='<div class="progress-bar"><div class="progress-fill" style="width:'+p+'%"></div></div><div class="score-text">第 '+(listenI+1)+' / '+listenQ.length+' 题</div><div class="question-area"><div class="question-text">听一听，选一选 👂</div><button class="listen-btn" onclick="speak(\''+q.en.replace(/'/g,"\\'")+'\')">🔊</button></div><div class="options-grid">'+opts.map(o=>'<button class="option-btn" onclick="checkListen(this,\''+o.en.replace(/'/g,"\\'")+'\',\''+q.en.replace(/'/g,"\\'")+'\')">'+o.emoji+'<br>'+o.cn+'</button>').join('')+'</div>';
 setTimeout(()=>speak(q.en),300);
 }
 function checkListen(btn,sel,cor){
 if(listenA)return;listenA=true;
-document.querySelectorAll('.option-btn').forEach(b=>{if(b.textContent.includes(cor)||b.innerHTML.includes(cor))b.classList.add('correct')});
-if(sel===cor){btn.classList.add('correct');listenS++;playCorrect()}
+document.querySelectorAll('.option-btn').forEach(b=>{if(b.innerHTML.includes(cor))b.classList.add('correct')});
+if(sel===cor){listenS++;playCorrect()}
 else{btn.classList.add('wrong');playWrong();speak(cor)}
 setTimeout(()=>{listenI++;renderListen()},1200);
 }
@@ -238,8 +311,7 @@ else if(pct>=.6){emoji='👍';title='做得不错！';starCount=3}
 else if(pct>=.4){emoji='💪';title='继续加油！';starCount=2}
 else{emoji='📖';title='再练练吧！';starCount=1}
 addStars(starCount);
-if(starCount>=4)showConfetti();
-if(starCount>=4)playWin();
+if(starCount>=4){showConfetti();playWin()}
 const stars='⭐'.repeat(starCount)+'☆'.repeat(5-starCount);
 document.getElementById('gameContent').innerHTML='<div class="result-screen"><div class="result-emoji">'+emoji+'</div><div class="result-title">'+title+'</div><div class="result-score">答对 '+score+' / '+total+'</div><div class="result-stars">'+stars+'</div><button class="play-again-btn" onclick="startGame()">🔄 再玩一次</button></div>';
 }
